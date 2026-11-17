@@ -41,7 +41,7 @@ export default function InterviewPage() {
   return (
     <div className="min-h-screen bg-rose-50/80 text-rose-900">
       <Navbar />
-      <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+      <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
         <section className="mb-6">
           <span className="inline-flex items-center gap-2 text-[10px] font-extrabold tracking-widest text-pink-800">
             <span className="grid size-6 place-items-center rounded-md bg-pink-100">02</span>
@@ -55,13 +55,13 @@ export default function InterviewPage() {
           </p>
         </section>
 
-        <div className="mb-4 grid gap-2 sm:grid-cols-3" role="group" aria-label="Choose a practice scenario">
+        <div className="mb-5 grid gap-3 sm:grid-cols-3" role="group" aria-label="Choose a practice scenario">
           {interviewScenarios.map((scenario, index) => (
             <button
               type="button"
               key={scenario.id}
               aria-pressed={scenario.id === scenarioId}
-              className={`relative grid min-h-20 grid-cols-[2rem_1fr] items-center gap-x-3 rounded-xl border p-3 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow ${
+              className={`relative grid min-h-24 grid-cols-[2rem_1fr] items-center gap-x-3 rounded-xl border p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow ${
                 scenario.id === scenarioId
                   ? "border-pink-300 bg-pink-50"
                   : "border-rose-200 bg-white/90 hover:border-pink-200"
@@ -69,10 +69,9 @@ export default function InterviewPage() {
               onClick={() => chooseScenario(scenario.id)}
             >
               <span className="row-span-2 grid size-8 place-items-center rounded-lg bg-rose-100 text-xs font-extrabold text-rose-800">
-                0{index + 1}
+                {index + 1}
               </span>
-              <span className="self-end pr-5 text-xs font-bold text-rose-800">{scenario.title}</span>
-              <span className="mt-1 pr-5 text-[10px] text-rose-700">{scenario.subtitle}</span>
+              <span className="self-end pr-5 text-base font-bold text-rose-800 sm:text-lg">{scenario.title}</span>
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-rose-700" aria-hidden="true">
                 →
               </span>
@@ -80,15 +79,12 @@ export default function InterviewPage() {
           ))}
         </div>
 
-        <div className="rounded-2xl border border-rose-200 bg-white p-4 shadow-sm sm:p-6">
-          <div className="flex items-center gap-3 border-b border-rose-200 pb-4">
-            <span className="grid size-10 place-items-center rounded-xl bg-rose-100 font-bold text-rose-900" aria-hidden="true">
-              G
-            </span>
-            <span className="grid gap-1 text-xs">
-              <strong className="text-rose-800">Guild master</strong>
-              <span className="text-rose-700">Interviewer · Friendly village guild</span>
-            </span>
+        <div className="rounded-2xl border border-rose-200 bg-white p-5 shadow-sm sm:p-8">
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-rose-200 pb-4">
+            <div>
+              <span className="text-[9px] font-extrabold tracking-widest text-rose-700">INTERVIEW PRACTICE</span>
+              <p className="mt-1 text-sm font-bold text-rose-800">{selectedScenario.title}</p>
+            </div>
             <span className="ml-auto rounded-md border border-rose-200 bg-rose-50 px-2 py-1.5 text-[9px] font-extrabold tracking-wider text-rose-700">
               {interviewComplete
                 ? "QUEST COMPLETE"
@@ -97,7 +93,7 @@ export default function InterviewPage() {
           </div>
 
           {interviewComplete ? (
-            <div className="flex items-start gap-4 py-8">
+            <div className="flex min-h-64 items-center gap-5 py-8">
               <span className="grid size-12 shrink-0 place-items-center rounded-xl border border-rose-200 bg-rose-50 text-2xl text-rose-700" aria-hidden="true">
                 ✦
               </span>
@@ -117,79 +113,83 @@ export default function InterviewPage() {
               </div>
             </div>
           ) : (
-            <>
-              <div className="relative my-5 rounded-xl border border-rose-100 bg-rose-50/80 p-4">
-                <span className="text-[9px] font-extrabold tracking-widest text-rose-800">THE GUILD MASTER ASKS</span>
-                <h2 className="mt-2 text-lg font-bold leading-relaxed text-rose-800">
-                  {interviewQuestion.question}
-                </h2>
-              </div>
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-8">
+              <div className="grid content-start gap-4">
+                <div className="rounded-xl border border-rose-100 bg-rose-50/80 p-5 sm:p-6">
+                  <span className="text-[9px] font-extrabold tracking-widest text-rose-800">YOUR QUESTION</span>
+                  <h2 className="mt-3 text-xl font-bold leading-relaxed text-rose-800">
+                    {interviewQuestion.question}
+                  </h2>
+                </div>
 
-              <div className="mb-5 flex items-start gap-3 rounded-xl border border-pink-200 bg-pink-50 p-3">
-                <span className="text-rose-700" aria-hidden="true">✦</span>
-                <div>
-                  <strong className="text-xs text-pink-900">A little hint</strong>
-                  <p className="mt-1 text-xs leading-5 text-rose-700">{interviewQuestion.hint}</p>
+                <div className="flex items-start gap-3 rounded-xl border border-pink-200 bg-pink-50 p-4">
+                  <span className="text-rose-700" aria-hidden="true">✦</span>
+                  <div>
+                    <strong className="text-xs text-pink-900">A little hint</strong>
+                    <p className="mt-1 text-xs leading-5 text-rose-700">{interviewQuestion.hint}</p>
+                  </div>
                 </div>
               </div>
 
-              <div className="mb-2 flex flex-wrap justify-between gap-2 text-[10px]">
-                <span className="font-extrabold tracking-widest text-rose-700">CHOOSE A RESPONSE</span>
-                <span className="text-rose-700">There is no pressure. This is practice.</span>
-              </div>
+              <div>
+                <div className="mb-3 flex flex-wrap justify-between gap-2 text-[10px]">
+                  <span className="font-extrabold tracking-widest text-rose-700">CHOOSE A RESPONSE</span>
+                  <span className="text-rose-700">There is no pressure. This is practice.</span>
+                </div>
 
-              <div className="grid gap-2">
-                {interviewQuestion.options.map((option, index) => {
-                  const isSelected = selectedInterviewOption === index;
-                  const showFeedback = selectedInterviewOption !== null;
-                  return (
-                    <button
-                      key={option.text}
-                      className={`flex min-h-12 items-start gap-3 rounded-xl border p-3 text-left text-xs leading-5 transition disabled:cursor-default ${
-                        isSelected && !option.worksWell
-                          ? "border-rose-200 bg-rose-50"
-                          : showFeedback && option.worksWell
-                            ? "border-pink-200 bg-pink-50"
-                            : "border-rose-200 bg-white hover:border-pink-300 hover:bg-pink-50/40"
-                      }`}
-                      type="button"
-                      disabled={showFeedback}
-                      aria-pressed={isSelected}
-                      onClick={() => answerInterview(index)}
-                    >
-                      <span className="grid size-6 shrink-0 place-items-center rounded-md border border-rose-200 bg-rose-50 text-[10px] font-extrabold text-rose-700">
-                        {String.fromCharCode(65 + index)}
-                      </span>
-                      <span className="grid flex-1 gap-1">
-                        <span className="text-rose-700">{option.text}</span>
-                        {isSelected && (
-                          <span className="text-[11px] text-rose-700" role="status">
-                            {option.feedback}
+                <div className="grid gap-2">
+                  {interviewQuestion.options.map((option, index) => {
+                    const isSelected = selectedInterviewOption === index;
+                    const showFeedback = selectedInterviewOption !== null;
+                    return (
+                      <button
+                        key={option.text}
+                        className={`flex min-h-12 items-start gap-3 rounded-xl border p-3 text-left text-xs leading-5 transition disabled:cursor-default ${
+                          isSelected && !option.worksWell
+                            ? "border-rose-200 bg-rose-50"
+                            : showFeedback && option.worksWell
+                              ? "border-pink-200 bg-pink-50"
+                              : "border-rose-200 bg-white hover:border-pink-300 hover:bg-pink-50/40"
+                        }`}
+                        type="button"
+                        disabled={showFeedback}
+                        aria-pressed={isSelected}
+                        onClick={() => answerInterview(index)}
+                      >
+                        <span className="grid size-6 shrink-0 place-items-center rounded-md border border-rose-200 bg-rose-50 text-[10px] font-extrabold text-rose-700">
+                          {String.fromCharCode(65 + index)}
+                        </span>
+                        <span className="grid flex-1 gap-1">
+                          <span className="text-rose-700">{option.text}</span>
+                          {isSelected && (
+                            <span className="text-[11px] text-rose-700" role="status">
+                              {option.feedback}
+                            </span>
+                          )}
+                        </span>
+                        {showFeedback && option.worksWell && (
+                          <span className="font-bold text-pink-700" aria-label="Recommended answer">
+                            ✓
                           </span>
                         )}
-                      </span>
-                      {showFeedback && option.worksWell && (
-                        <span className="font-bold text-pink-700" aria-label="Recommended answer">
-                          ✓
-                        </span>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-
-              {selectedInterviewOption !== null && (
-                <div className="mt-4 flex items-center justify-between gap-3">
-                  <span className="text-xs font-bold text-rose-800">
-                    ✦ +{interviewQuestion.options[selectedInterviewOption].worksWell ? 15 : 8} XP
-                  </span>
-                  <button className={buttonClasses} type="button" onClick={nextInterviewQuestion}>
-                    {interviewQuestionIndex + 1 < selectedScenario.questions.length ? "Next question" : "Finish quest"}{" "}
-                    <span aria-hidden="true">→</span>
-                  </button>
+                      </button>
+                    );
+                  })}
                 </div>
-              )}
-            </>
+
+                {selectedInterviewOption !== null && (
+                  <div className="mt-4 flex items-center justify-between gap-3">
+                    <span className="text-xs font-bold text-rose-800">
+                      ✦ +{interviewQuestion.options[selectedInterviewOption].worksWell ? 15 : 8} XP
+                    </span>
+                    <button className={buttonClasses} type="button" onClick={nextInterviewQuestion}>
+                      {interviewQuestionIndex + 1 < selectedScenario.questions.length ? "Next question" : "Finish quest"}{" "}
+                      <span aria-hidden="true">→</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
           )}
         </div>
       </main>

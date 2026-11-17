@@ -32,7 +32,7 @@ export default function Navbar({ rightSlot }: { rightSlot?: ReactNode }) {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-lg px-3 text-xs font-semibold transition sm:px-4 ${
+                className={`flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-lg px-3 text-xs hover:text-base font-semibold transition-all sm:px-4 ${
                   isActive
                     ? "bg-white text-pink-800 shadow-sm"
                     : "text-rose-700 hover:bg-white/70 hover:text-pink-800"
