@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #fff6f9;
+  --color-foreground: #904768;
+  --font-sans: "Times New Roman", Times, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-background);
+  background-image:
+    linear-gradient(rgba(255, 246, 249, 0.88), rgba(255, 246, 249, 0.88)),
+    url("/mc.webp");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid rgb(219 39 119 / 45%);
+  outline-offset: 3px;
+}
+
+::selection {
+  color: #831843;
+  background: #fbcfe8;
+}
